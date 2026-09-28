@@ -11,7 +11,16 @@
       href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;1,600&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="./css/style.css" >
+    <link rel="stylesheet" href="./css/style.css">
+    <script>
+      let savedTheme = localStorage.getItem("coffee-house-theme");
+
+      if (savedTheme !== "dark") {
+        savedTheme = "light";
+      }
+
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
   </head>
   <body>
     <header class="header">
@@ -71,13 +80,8 @@
           </span>
 
           <button class="burger" type="button" aria-label="Open menu">
-            <img
-              class="icon"
-              src="./assets/icons/burger-menu.svg"
-              alt=""
-              width="16"
-              height="16"
-            >
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
           </button>
         </div>
       </div>
@@ -97,9 +101,8 @@
                 class="tab tab-active"
                 type="button"
                 role="tab"
-                id="tab-coffee"
+                data-category="coffee"
                 aria-selected="true"
-                aria-controls="panel-coffee"
               >
                 <span class="tab-icon" aria-hidden="true">
                   <img
@@ -118,9 +121,8 @@
                 class="tab"
                 type="button"
                 role="tab"
-                id="tab-tea"
+                data-category="tea"
                 aria-selected="false"
-                aria-controls="panel-tea"
                 tabindex="-1"
               >
                 <span class="tab-icon" aria-hidden="true">
@@ -140,9 +142,8 @@
                 class="tab"
                 type="button"
                 role="tab"
-                id="tab-dessert"
+                data-category="dessert"
                 aria-selected="false"
-                aria-controls="panel-dessert"
                 tabindex="-1"
               >
                 <span class="tab-icon" aria-hidden="true">
@@ -165,131 +166,7 @@
             </li>
           </ul>
 
-          <div
-            class="tab-panel"
-            id="panel-coffee"
-            role="tabpanel"
-            aria-labelledby="tab-coffee"
-          >
-            <ul class="products">
-              <li class="card">
-                <img
-                  class="card-img"
-                  src="./assets/images/coffee-1.jpg"
-                  alt="Irish coffee"
-                >
-                <div class="card-body">
-                  <h2 class="card-heading">Irish coffee</h2>
-                  <p>Fragrant black coffee with Jameson Irish whiskey and whipped milk</p>
-                  <p class="card-price">$7.00</p>
-                </div>
-              </li>
-              <li class="card">
-                <img
-                  class="card-img"
-                  src="./assets/images/coffee-2.jpg"
-                  alt="Kahlua coffee"
-                >
-                <div class="card-body">
-                  <h2 class="card-heading">Kahlua coffee</h2>
-                  <p>
-                    Classic coffee with milk and Kahlua liqueur under a cap of frothed milk
-                  </p>
-                  <p class="card-price">$7.00</p>
-                </div>
-              </li>
-              <li class="card">
-                <img
-                  class="card-img"
-                  src="./assets/images/coffee-3.jpg"
-                  alt="Honey raf coffee"
-                >
-                <div class="card-body">
-                  <h2 class="card-heading">Honey raf</h2>
-                  <p>Espresso with frothed milk, cream and aromatic honey</p>
-                  <p class="card-price">$5.50</p>
-                </div>
-              </li>
-              <li class="card">
-                <img
-                  class="card-img"
-                  src="./assets/images/coffee-4.jpg"
-                  alt="Ice cappuccino"
-                >
-                <div class="card-body">
-                  <h2 class="card-heading">Ice cappuccino</h2>
-                  <p>Cappuccino with soft thick foam in summer version with ice</p>
-                  <p class="card-price">$5.00</p>
-                </div>
-              </li>
-              <li class="card">
-                <img
-                  class="card-img"
-                  src="./assets/images/coffee-5.jpg"
-                  alt="Espresso coffee"
-                >
-                <div class="card-body">
-                  <h2 class="card-heading">Espresso</h2>
-                  <p>Classic black coffee</p>
-                  <p class="card-price">$4.50</p>
-                </div>
-              </li>
-              <li class="card">
-                <img
-                  class="card-img"
-                  src="./assets/images/coffee-6.jpg"
-                  alt="Latte"
-                >
-                <div class="card-body">
-                  <h2 class="card-heading">Latte</h2>
-                  <p>
-                    Espresso coffee with the addition of steamed milk and dense milk foam
-                  </p>
-                  <p class="card-price">$5.50</p>
-                </div>
-              </li>
-              <li class="card">
-                <img
-                  class="card-img"
-                  src="./assets/images/coffee-7.jpg"
-                  alt="Latte macchiato coffee"
-                >
-                <div class="card-body">
-                  <h2 class="card-heading">Latte macchiato</h2>
-                  <p>Espresso with frothed milk and chocolate</p>
-                  <p class="card-price">$5.50</p>
-                </div>
-              </li>
-              <li class="card">
-                <img
-                  class="card-img"
-                  src="./assets/images/coffee-8.jpg"
-                  alt="Coffee with cognac coffee"
-                >
-                <div class="card-body">
-                  <h2 class="card-heading">Coffee with cognac</h2>
-                  <p>Fragrant black coffee with cognac and whipped cream</p>
-                  <p class="card-price">$6.50</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div
-            class="tab-panel"
-            id="panel-tea"
-            role="tabpanel"
-            aria-labelledby="tab-tea"
-            hidden
-          ></div>
-
-          <div
-            class="tab-panel"
-            id="panel-dessert"
-            role="tabpanel"
-            aria-labelledby="tab-dessert"
-            hidden
-          ></div>
+          <ul class="products"></ul>
 
           <button class="load-more" type="button" aria-label="Load more products">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -311,6 +188,17 @@
         </section>
       </div>
     </main>
+
+    <div class="modal" aria-hidden="true">
+      <div class="modal-backdrop"></div>
+      <div class="modal-window" role="dialog" aria-modal="true" aria-label="Product details">
+        <button class="modal-close" type="button" aria-label="Close">
+          <span class="modal-close-line"></span>
+          <span class="modal-close-line"></span>
+        </button>
+        <div class="modal-body"></div>
+      </div>
+    </div>
 
     <div class="wrapper">
       <footer class="footer" id="contact-us">
@@ -385,5 +273,7 @@
       </footer>
     </div>
     <script src="./js/theme.js"></script>
+    <script src="./js/burger.js"></script>
+    <script src="./js/menu.js"></script>
   </body>
 </html>
