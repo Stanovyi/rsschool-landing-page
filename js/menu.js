@@ -211,7 +211,7 @@ function openModal(product, categoryIndex) {
     '<p class="modal-total">Total: <span class="modal-price-value">$' +
     getTotalPrice(product, selectedSize, selectedAdditives) +
     "</span></p>" +
-    '<p class="modal-note">The volume can vary by ±5%. The price is approximate and may change depending on the additives chosen.</p>' +
+    '<p class="modal-note">The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</p>' +
     "</div>";
 
   modalBody.querySelectorAll("[data-size]").forEach(function (btn) {
